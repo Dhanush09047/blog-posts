@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Blog{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to Our Blog</h1>
+    <p>Discover amazing stories and insights</p>
+</div>
+
+<section class="posts-section">
+    <h2>Latest Posts</h2>
+    {% if posts %}
+        <div class="posts-grid">
+            {% for post in posts %}
+                <article class="post-card">
+                    <h3><a href="/post/{{ post.slug }}">{{ post.title }}</a></h3>
+                    <p class="post-excerpt">{{ post.content[:100] }}...</p>
+                    <small class="post-date">{{ post.created_at }}</small>
+                    <a href="/post/{{ post.slug }}" class="read-more">Read More →</a>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-posts">No posts yet. Check back soon!</p>
+    {% endif %}
+</section>
+{% endblock %}
